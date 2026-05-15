@@ -1,26 +1,178 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: #050505;
+  --color-foreground: #fcfcfc;
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-permanent-marker);
+  --font-serif: var(--font-permanent-marker);
+  --font-permanent-marker: var(--font-permanent-marker);
+  --font-luckiest-guy: var(--font-permanent-marker);
+
+  --color-primary: #ffffff;
+  --color-secondary: #aaaaaa;
+}
+
+.brush-typography {
+  font-family: var(--font-permanent-marker);
+  transform: rotate(-3deg);
+  display: inline-block;
+  filter: url(#rough-edges);
+  text-rendering: optimizeLegibility;
+}
+
+.handwritten-text {
+  font-family: var(--font-permanent-marker);
+  display: inline-block;
+  filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5)) url(#rough-edges);
+  transform: rotate(-3deg);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --foreground: #fcfcfc;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 1. Reset e Scroll Suave */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2. Utilitários para Texto (Insta-Sticker Premium) */
+@layer utilities {
+
+  /* Sticker Pequeno (Outline fino + Offset curto) */
+  .sticker-shadow-sm {
+    text-shadow:
+      -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+      /* Borda de 1px */
+      2px 2px 0 #000, 3px 3px 0 #000, 4px 4px 0 #000;
+    /* Drop duro curto */
+  }
+
+  /* Sticker Médio (Padrão para subtítulos) */
+  .sticker-shadow-md {
+    text-shadow:
+      -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000,
+      /* Borda de 2px para separar do fundo */
+      3px 3px 0 #000, 4px 4px 0 #000, 5px 5px 0 #000, 6px 6px 0 #000, 7px 7px 0 #000, 8px 8px 0 #000;
+    /* Drop dramático para baixo/direita */
+  }
+
+  /* Sticker Gigante (Para os Títulos Principais como FinalCTA) */
+  .sticker-shadow-lg {
+    text-shadow:
+      -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000,
+      /* Borda de 3px para garantir leitura independente da foto */
+      4px 4px 0 #000, 5px 5px 0 #000, 6px 6px 0 #000, 7px 7px 0 #000, 8px 8px 0 #000, 9px 9px 0 #000,
+      10px 10px 0 #000, 11px 11px 0 #000, 12px 12px 0 #000, 13px 13px 0 #000, 14px 14px 0 #000, 15px 15px 0 #000;
+    /* Extrusão maciça/monolítica */
+  }
+}
+
+.stroke-text {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+  color: transparent;
+}
+
+@media (min-width: 768px) {
+  .stroke-text {
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.7);
+  }
+}
+
+.text-glow-corzinha {
+  color: #ffb8c6;
+  text-shadow: 0 0 15px rgba(255, 100, 150, 0.6), 0 0 30px rgba(255, 0, 50, 0.4);
+}
+
+.shadow-text-heavy {
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.text-outline {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+  color: transparent;
+}
+
+/* 3. Custom Scrollbar Profissional */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* 4. Animações e Clips */
+.clip-path-reveal {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+}
+
+@keyframes scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+
+  50.1% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+.animate-scroll-line {
+  animation: scroll-line 2.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes scrollCue {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* 5. Ajuste para o Next.js Image */
+img {
+  max-width: 100%;
+  height: auto;
 }
