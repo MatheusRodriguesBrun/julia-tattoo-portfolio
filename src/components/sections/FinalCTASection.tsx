@@ -21,7 +21,7 @@ export default function FinalCTASection() {
   useIsomorphicLayoutEffect(() => {
     if (!containerRef.current || !bgFrameRef.current || !text1Ref.current || !text2Ref.current || !ctaButtonRef.current || !starTopRef.current) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       // 1. SETUP INICIAL: Controlando a rotação estritamente pelo GSAP para evitar conflitos
       gsap.set(bgFrameRef.current, { scale: 1.2, opacity: 0 });
       gsap.set(text1Ref.current, { opacity: 0, scale: 0.85, x: -60, rotation: -32 });
@@ -107,10 +107,10 @@ export default function FinalCTASection() {
       {/* CAMADA INTERATIVA DE TEXTOS COM MAX-W PARA TRAVAR EM TELAS GIGANTES */}
       <div className="relative z-10 w-full h-full max-w-7xl mx-auto pointer-events-none">
 
-        {/* TEXTO 1: TOP LEFT (Removido a rotação física do Tailwind para casar com o GSAP) */}
+        {/* TEXTO 1: TOP LEFT */}
         <div
           ref={text1Ref}
-          className="absolute top-[24%] sm:top-[22%] md:top-[16%] left-[4%] md:left-[5%] origin-center z-20 will-change-transform"
+          className="absolute top-[18%] sm:top-[16%] md:top-[16%] left-[4%] md:left-[5%] origin-center z-20 will-change-transform"
         >
           <h2
             className="font-display font-black text-[7vw] sm:text-[6vw] md:text-[3.5vw] lg:text-[3.8rem] text-white uppercase leading-[0.9] tracking-tight text-left sticker-shadow-lg selection:bg-white selection:text-black"
@@ -123,15 +123,15 @@ export default function FinalCTASection() {
         {/* ESTRELA IDÊNTICA AO DO POST DO INSTAGRAM */}
         <div
           ref={starTopRef}
-          className="absolute bottom-[38%] sm:bottom-[36%] md:bottom-[22%] left-[12%] md:left-[14%] z-10"
+          className="absolute bottom-[46%] sm:bottom-[40%] md:bottom-[22%] left-[4%] sm:left-[8%] md:left-[14%] z-10"
         >
-          <StarMotif className="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)]" />
+          <StarMotif className="w-10 h-10 sm:w-16 sm:h-16 md:w-24 md:h-24 text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)]" />
         </div>
 
         {/* TEXTO 2: BOTTOM RIGHT */}
         <div
           ref={text2Ref}
-          className="absolute bottom-[30%] sm:bottom-[28%] md:bottom-[15%] right-[4%] md:right-[6%] z-20"
+          className="absolute bottom-[22%] sm:bottom-[22%] md:bottom-[15%] right-[3%] md:right-[6%] z-20"
         >
           <h2
             className="font-display font-black text-[6vw] sm:text-[5.5vw] md:text-[3vw] lg:text-[3.2rem] text-white uppercase leading-[0.95] tracking-tight text-right sticker-shadow-lg"

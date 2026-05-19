@@ -45,8 +45,8 @@ export default function HeroSection() {
       className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-[#050505]"
     >
       {/* 1. IMAGEM CENTRALIZADA (Sem cortes) */}
-      <div 
-        ref={imageWrapperRef} 
+      <div
+        ref={imageWrapperRef}
         className="relative z-10 w-full h-full flex items-center justify-center p-4 md:p-12"
       >
         <div className="relative aspect-1265/1244 h-full max-h-[85vh] w-auto">
@@ -54,6 +54,7 @@ export default function HeroSection() {
             src="/images/1-hero.png"
             alt="Júlia Tattoo"
             fill
+            sizes="(max-width: 768px) 100vw, 85vh"
             priority
             className="object-contain grayscale-15 brightness-90 shadow-[0_0_50px_rgba(0,0,0,0.5)]"
           />
@@ -71,15 +72,15 @@ export default function HeroSection() {
             transition={{ duration: 1.8, ease: "easeInOut" }}
             className="font-display handwritten-text text-white font-normal leading-[0.8] flex flex-col"
           >
-            <span className="text-[14vw] md:text-[8vw] tracking-[-0.06em]">
+            <span className="text-[14vw] md:text-[8vw] tracking-[-0.06em] pr-4 md:pr-8">
               OI, EU SOU
             </span><br></br>
-            <span className="text-[16vw] md:text-[10vw] tracking-[-0.04em]">
+            <span className="text-[16vw] md:text-[10vw] tracking-[-0.04em] pr-4 md:pr-8">
               A JÚLIA
             </span>
           </motion.h1>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 0.6, y: 0 }}
             transition={{ delay: 1.5, duration: 1 }}

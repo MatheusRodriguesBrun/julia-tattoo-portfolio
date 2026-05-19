@@ -20,7 +20,7 @@ export default function OrnamentSection() {
   useIsomorphicLayoutEffect(() => {
     if (!containerRef.current) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       // Perspective para a sensação de profundidade 3D (Z-Axis)
       gsap.set(containerRef.current, { perspective: 1000 });
 

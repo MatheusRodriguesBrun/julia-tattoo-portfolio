@@ -24,7 +24,7 @@ export default function DualitySection() {
   useIsomorphicLayoutEffect(() => {
     if (!containerRef.current) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       // Estado Inicial
       gsap.set(img1Ref.current, { scale: 1.1, force3D: true });
       gsap.set(img2Ref.current, { y: "-100%", force3D: true });

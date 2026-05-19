@@ -10,7 +10,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 const WHATSAPP_NUMBER = "5551985009184"; 
 
-const cities = [
+interface City {
+  name: string;
+  link: string;
+  image?: string;
+}
+
+const cities: City[] = [
   { 
     name: "Gravataí", 
     link: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Oi Xulia, vim do seu site e gostaria de fazer um orçamento para atendimento em Gravataí.")}`
@@ -89,9 +95,9 @@ export default function LocationSection() {
         ref={hoverImgRef}
         className={`fixed top-0 left-0 w-64 h-80 pointer-events-none z-10 transform -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[40%_60%_70%_30%] transition-opacity duration-500 mix-blend-screen grayscale ${hoveredIndex !== null ? 'opacity-50' : 'opacity-0'}`}
       >
-        {hoveredIndex !== null && (cities[hoveredIndex] as any).image && (
+        {hoveredIndex !== null && cities[hoveredIndex].image && (
           <Image
-            src={(cities[hoveredIndex] as any).image}
+            src={cities[hoveredIndex].image!}
             alt={cities[hoveredIndex].name}
             fill
             sizes="256px"
